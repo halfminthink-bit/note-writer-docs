@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>note & WordPress Auto Publisher - AI記事自動生成・投稿システム</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #ffffff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 16px;
+            color: #111;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 400;
+        }
+        .content {
+            padding: 60px 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        h2 {
+            color: #111;
+            margin-bottom: 32px;
+            font-size: 1.6em;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+        .feature {
+            padding: 24px;
+            background: #fafafa;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.2s ease;
+        }
+        .feature:hover {
+            background: #f5f5f5;
+            border-color: #d5d5d5;
+        }
+        .feature h3 {
+            color: #111;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .feature p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .content ol {
+            line-height: 2;
+            font-size: 1em;
+            color: #555;
+            padding-left: 24px;
+        }
+        .content ol li {
+            margin-bottom: 20px;
+        }
+        .content ol li strong {
+            color: #111;
+            font-weight: 600;
+        }
+        .security-list {
+            line-height: 2;
+            font-size: 1em;
+            color: #555;
+            list-style: none;
+            padding-left: 0;
+        }
+        .security-list li {
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .security-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #111;
+            font-weight: 600;
+        }
+        .tech-box {
+            background: #fafafa;
+            padding: 28px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            margin-top: 24px;
+        }
+        .tech-box p {
+            margin-bottom: 16px;
+            color: #111;
+            font-weight: 600;
+        }
+        .tech-box ul {
+            line-height: 2;
+            padding-left: 24px;
+            color: #555;
+        }
+        .tech-box ul li {
+            margin-bottom: 8px;
+        }
+        .links {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .links a {
+            color: #111;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s ease;
+        }
+        .links a:hover {
+            color: #666;
+        }
+        .contact {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .contact p {
+            font-size: 1em;
+            color: #555;
+            line-height: 1.8;
+        }
+        .contact a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #111;
+        }
+        .contact a:hover {
+            color: #666;
+            border-color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>note & WordPress Auto Publisher</h1>
+            <p>Google Apps Scriptで実現する、AI記事自動生成・投稿システム</p>
+        </header>
+
+        <div class="content">
+            <h2>主な機能</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>AI記事生成</h3>
+                    <p>OpenAI APIを使用して、キーワードから高品質な記事を自動生成</p>
+                </div>
+                <div class="feature">
+                    <h3>Google Docs保存</h3>
+                    <p>生成された記事を自動的にGoogle Docsに保存</p>
+                </div>
+                <div class="feature">
+                    <h3>note.com投稿</h3>
+                    <p>ブラウザ自動操作でnoteに記事を自動投稿</p>
+                </div>
+                <div class="feature">
+                    <h3>WordPress投稿</h3>
+                    <p>WordPress REST APIで記事を自動投稿</p>
+                </div>
+                <div class="feature">
+                    <h3>スプレッドシート管理</h3>
+                    <p>Google Sheetsで記事の生成・投稿を一元管理</p>
+                </div>
+                <div class="feature">
+                    <h3>バックグラウンド処理</h3>
+                    <p>Google Cloud Runで高速・安定した処理を実現</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>使い方</h2>
+            <ol>
+                <li><strong>スプレッドシートにキーワードを入力</strong><br>
+                    記事生成したいトピックのキーワードを設定</li>
+                <li><strong>メニューから記事生成を実行</strong><br>
+                    AIが自動的に記事を生成してGoogle Docsに保存</li>
+                <li><strong>noteまたはWordPressに投稿</strong><br>
+                    ワンクリックで記事を自動投稿</li>
+                <li><strong>投稿結果を確認</strong><br>
+                    スプレッドシートに投稿URLが自動記録</li>
+            </ol>
+        </div>
+
+        <div class="content">
+            <h2>セキュリティとプライバシー</h2>
+            <p style="margin-bottom: 24px; color: #555;">
+                本サービスは、Googleの厳格なセキュリティ基準を満たしています：
+            </p>
+            <ul class="security-list">
+                <li>Google Cloud Platformの認証システムを使用</li>
+                <li>すべてのAPI通信は暗号化(HTTPS/TLS)</li>
+                <li>最小権限の原則に基づくアクセス制御</li>
+                <li>ユーザーデータは全てGoogle Drive内に保存</li>
+                <li>第三者とのデータ共有は最小限(OpenAI APIのみ)</li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2>技術仕様</h2>
+            <div class="tech-box">
+                <p>使用技術</p>
+                <ul>
+                    <li>Google Apps Script</li>
+                    <li>Google Cloud Run (Python/FastAPI)</li>
+                    <li>OpenAI API</li>
+                    <li>Google Cloud Tasks</li>
+                    <li>WordPress REST API</li>
+                    <li>Playwright (Browser Automation)</li>
+                </ul>
+                <p style="margin-top: 28px;">必要なGoogle APIスコープ</p>
+                <ul>
+                    <li>Google Sheets API - データの読み書き</li>
+                    <li>Google Docs API - 記事の作成・保存</li>
+                    <li>Google Drive API - ファイル共有</li>
+                    <li>Cloud Platform API - バックグラウンド処理</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="terms.html">サービス利用規約</a>
+        </div>
+
+        <div class="contact">
+            <h2>お問い合わせ</h2>
+            <p style="margin-top: 24px;">
+                ご質問やサポートが必要な場合は、お気軽にお問い合わせください。<br>
+                <strong>Email:</strong> <a href="mailto:kyota.3557@gmail.com">kyota.3557@gmail.com</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 note & WordPress Auto Publisher. All rights reserved.</p>
+    </footer>
+</body>
+</html>
